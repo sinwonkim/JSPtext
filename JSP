@@ -1,0 +1,37 @@
+JSP 스크립트 요소는 모두 4가지가 있다.
+
+
+스크립트릿 
+선언문
+표현식 
+주석 
+
+<%   %>  스크립트릿  자바 코드 사용 가능
+
+<%= %> 익스프레션 자바식 출력
+
+<%@ %> 지시자, 웹컨테이너가 jsp페이지를 처리할 떄 필요한 정보 기술 
+
+<%! %> 선언부 , 변수선언이나 메소드를 선언 
+
+<jsp:~~/> <c:~~/> 액션태그 
+
+include 지시자 
+다른 페이지를 불러다 현재 jsp페이지의 일부로 만들기 위해 사용, 현재 jsp페이지를 기준으로 상대적인 url 사용
+<%@ include file = "Today.jsp"%>
+
+taglib 지시자 - 액션을 사용할 때 이용한다.
+ex
+<%@ taglib prefix = "c" url = http://java.sun.com/jsp/jstl/core %>
+
+jsp 내장객체
+request 
+response
+out
+application
+config
+pageContext
+session
+page 
+exception
+
