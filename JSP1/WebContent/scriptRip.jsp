@@ -19,9 +19,10 @@
 	String scriptlet = "scriptlet";
 	String comment = "comment";
 	out.println("내장 객체를 이용한 출력 : " + declaration);
-
-
 %>
+
+<%= declaration %> <!-- 선언문 출력 -->
+<%= decMethod() %> <!-- 선언문 출력 -->
 
 
 </body>
