@@ -124,10 +124,36 @@ flush 속성 값을 true로 지정하면 포함할 페이지의 내용을 삽입
 액션태그는 XML에 기반 한 구문 형식을 가지고 있는다. 지시자와 스크립트 요소를 살펴 볼 떄 주로 스크립트 형식으로만 다루었으나 
 지시자와 스크립트 요소도 XML형식을 지원함 
 
+include 액션 태그는 포함될 JSP페이지에 새로운 요청 파라미터를 추가적으로 지정할 수 있다. 
+include 액션 태그의 몸체 안에 <jsp:param>태그를 사용하여 다음과 같은 형태로 사용이 됨 
+
+<jsp:include page="로컬URL" flush="true">
+          <jsp:param name="name_1" value="value_1"/>
+          <jsp:param name="name_2" value="value_2"/>
+<jsp:include>
+
+<jsp:parama>태그
+<jsp:param>태그는 액션을 시도하려는 페이지에서 클라이언트 요청시에 포함된 매개변수와는 별도로 추가적인 값이 생길 떄 사용하는 태그 
+
+
+
+forward 액션태그
+다른페이지로 프로그램 제어를 이동할 떄 사용되는 태그 
+ex)
+<jsp:forward page="로컬URL"/>
+<jsp:forward page="로컬URL"/>
+<jsp:forward page='<%=expression%>'/>  동적으로 부여도 가능
+
+기타 액션 태그 
+useBean 액션 태그는 자바빈즈와 통신을 위해서 구현한 액션 태그 
+문법적인 구조 
+1.  <jsp:useBean id="" class="" scope=""/>
+2. <jsp:setProperty name="" property="" value="" />
+3. <jsp:getProperty name="" property="" />
+
 FORM태그 
 FORM 태그는 method속성에는 get방식과 post 방식 두 가지가 존재 get 방식은 전송할 데이터를 URL 뒤에 덧붙여서 보내어지고 용량에 제한이 있는
 속성이지만, post 방식은 전송할 데이터를 환경변수(header)에 담아서 넘기고 용량에는 제한이 없는 속성 
-
 
 
 
