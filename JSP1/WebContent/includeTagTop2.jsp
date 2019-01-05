@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String name="korea korea";
-%>    
+	String siteName = request.getParameter("siteName");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="includeTagTop1.jsp"/><p>
-include ActionTag의 body입니다.
+include ActionTag의 Top 입니다.
+<%=siteName %>
+
 </body>
 </html>
