@@ -1,0 +1,99 @@
+자바에서 사용되는 컴포넌트를 말한다. 빈은 자바에서 컴포넌트를 이용하기 위해 만들어놓은 기술 
+컴포넌트를 사용하면 좋은 이유는 부품이 필요할 떄마다 가져다가 사용할 수 있다는 점 
+
+인터넷은 HTTP 프로토콜을 사용함 이 HTTP 프로토콜은 상태가 없는 프로토콜이라고 하는데 
+사용자의 브라우저와 서버 간의 상태에 대한 보존 없이 매 순간 새로운 연결을 하고, 요청에 대한 응답을 서버가 전송하고 나서 모든 연결이 끊어지게 됨
+세션을 뭐라고 이해할 수 있을까? 사용자와 브라우저와 서버 간의 논리적인 연결이라고 생각하면 됨 
+클라이언ㅌ가 서버로 요청을 할 떄 보내지는 정보에는 그 클라이언트에 대한 정보도 포함되어서 전송이 됨 
+특정한 클라이언트에서 서버로 요청을 보냈다면 서버는 이 클라이언트가 보낸 요청에 함께 존재하는 그 클라이언트의 정보를 가지고 있다가 다시 그 클라이언트
+로부터 또다른 요청이 왔을때 이미 가지고 있던 정보를 비교해서 동일한 브라우인지를 판단하게 됨 
+
+자바빈(JavaBean) 작성방법 
+자바빈은 클래스이므로 기존의 자바 클래스를 작성하는 방법과 동일하다. 
+자바빈의 경우 데이터를 담을 프로퍼티(멤버변수)와  겟셋 메소드 (데이터 가져오거나 데이터 저장하는 메서드로 구성)
+
+ex)
+public class MemberBean 
+{
+  private String memId;            // id, passWord , memName , memAge   아이디,비번,이름,나이   멤버변수 4개 선언 
+  private String memPassword;
+  private String memName;
+  private String memAge;
+
+  public String getmemId(){
+    return memId;
+  }
+
+  public void setId(String memId) {
+          this.memId   = memId          // this는 위 멤버변수의 id 멤버변수를 가리키고   오른쪽 id는 파라미터의 id를 가리키지  이런식으로 
+                                 // 각각의 선언한 멤버 변수의 겟셋 메서드를 만들어줌
+  }
+}
+
+JSP에서 자바빈을 사용하기 위한 액션태그 3가지
+자바빈 액션태그는 <jsp:useBean>,<jsp:getProperty>, <jsp:setProperty> 3가지가 있음
+
+1.<jsp:useBean>
+<jsp:useBean id="빈 이름" class="자바빈 클래스 이름" scope="범위"/>
+
+id : jsp 페이지에서 (자바빈 객체)에 접근 할 떄 사용하는 이름
+
+class:패키지 이름을 포함한 자바빈 클래스의 완전한 이름을 입력
+
+scope:자바빈 객체가 저장될 영역을 지정  page,request,session,application 중 하나를 값으로 갖음 기본 값은 page
+      사용시 보면 page로  많이 사용한다.
+   
+-------- useBean은 자바빈 객체를 생성하는 액션태그  -------------
+ex)
+<jsp:useBean id="member" class="pakage.MemberBean"/>
+
+위의 액션태그를 코드로 바꾸면 
+
+MemberBean  member = (MemberBean)request.getAttribute("member"); // 내장객체 member라는 속성 얻어오겠다  그래서 member네이밍 시키고 사용하겠다
+if(member == null){
+    member = new MemberBean();  // 인스턴스 생성
+    request.setAttribute("member",member) // 키,벨류값으로 내장객체 셋 하겠다
+}
+    
+2. <jsp:setProperty>
+<jsp:setProperty name="자바빈" property:"이름" value = "값"/>
+ 
+ name:프로퍼티 값을 변경할 자바빈 객체의 이름 
+
+ property: 값을 지정할 프로퍼티의 이름  프로퍼티가  멤버변수라고 생각하면 될듯 
+ 
+ value:프로퍼티 값, 표현식 사용가능
+ 
+ setProperty는 생성된 자바빈 객체에 프로퍼티 값을 지정하는 기능을 함 위에서 생성한  member 자바빈 객체에 접근하여 멤버변수 id변경한다는 
+ 예를 들면 
+ 
+ <jsp:useBean id="member" class="package.MemberBean" />
+ <jsp:setProperty name="member" property:"id" value="aaad"/>
+ 
+ property 속성의 값을 *로 지정할 수 있음 이럴경우 각각의 프로퍼트이 값을 같은 이름을 갖는 파라미터의 값으로 설정한다.
+ ------------  * 로 지정하면 좋네 마치  임포트 해서 파일 얻어 오듯이
+ <%=member.getmemId() %>
+ <%=member.getmemPassword() %>
+ <%=member.getmemName() %> 이런식 활용할 수 있다는 점?
+ 
+ 
+ <jsp:useBean id="member" class="package.MemberBean" />
+ <jsp:setProperty name="member" value="aaad"/>
+ 
+ 위 코드의 경우 id파라미터의 값을 id 프로퍼티의 값으로  
+ 
+ ---------------------------------------------------------------------------
+ 3.<jsp:getProperty>
+ <jsp:getProperty name="자바빈" property="이름"/>
+ 
+ name : <jsp:useBean> 액션 태그의 id속성에서 지정한 값을 사용  결국은 위에서 jsp:useBean  사용해서 만든 객체 이름으로 접근해서 
+         거기에 property 멤버 변수값을 가져온다 그런거 
+property: 멤버변수 값 가져온다
+
+ 
+ 
+ 
+ 
+ 
+ 
+
