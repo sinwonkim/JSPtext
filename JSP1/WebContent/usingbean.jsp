@@ -17,12 +17,11 @@
 <jsp:useBean id="testdao" class="ch8.testDAO"></jsp:useBean>
 <% 
 ArrayList<testTable> list= testdao.getTestTable();
-int counter = list.size();
 for(int i = 0; i<list.size(); i++ ){
 	testTable as = (testTable)list.get(i);
-
 %>
-<tr>
+
+<tr>	
 	<td><%=as.getTestId() %></td>
 	<td><%=as.getTestPw() %></td>
 </tr>
