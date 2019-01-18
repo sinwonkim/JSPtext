@@ -24,7 +24,7 @@ for(int i = 0; i<list.size(); i++ ){
 <tr>	
 	<td><%=as.getTestId() %></td>
 	<td><%=as.getTestPw() %></td>
-</tr>
+</tr>	
 
 <%
 }
