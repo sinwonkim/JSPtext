@@ -1,0 +1,29 @@
+JSP의 표현언어 Expression Language
+
+JSP 페이지 내의 자바코드를 최소화 하려고  
+
+웹 어플리케이션은 page,request,session,application의 4개의 저장소를 가지고 있음 
+
+request.setAttribute("name","aaa"); => request 내장객체에 name속성으로 aaa 저장
+
+ex) 
+
+<%
+  request.setAttribute("siteName","JSPSTUDY.co.kr");
+
+%>
+<html>
+<head>
+<title></tile>
+<body>
+
+사이트 명 : ${siteName}
+
+EL의 내장객체
+param
+paramValues
+header
+headerValues
+cookie           :쿠키객체 참조할 때
+initParam        :컨텍스트의 초기화 파라미터를 의미함 
+pageContext 
