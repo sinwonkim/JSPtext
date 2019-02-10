@@ -3,11 +3,7 @@ JSP의 표현언어 Expression Language - JSP2.0 버젼부터 지원이 되는 �
 
 표현언어? 왜 써 
 JSP페이지 내의 자바코드를 최소화하려는 정책
-
-
-
 JSP 페이지 내의 자바코드를 최소화 하려고  
-
 웹 어플리케이션은 page,request,session,application의 4개의 저장소를 가지고 있음 
 
 request.setAttribute("name","aaa"); => request 내장객체에 name속성으로 aaa 저장
@@ -16,7 +12,6 @@ ex)
 
 <%
   request.setAttribute("siteName","JSPSTUDY.co.kr");
-
 %>
 <html>
 <head>
@@ -24,6 +19,70 @@ ex)
 <body>
 
 사이트 명 : ${siteName}
+
+result 
+JSPSTUDY.co.kr
+
+이렇게 가능한 이유는 JSP 내장객체에서 스크립트 요소 영역에서는 내장객체가 제공이 됨 
+내장객체가 제공되는 이유는 JSP 페이지에서 꼭 필수적으로 필요한 객체들이 있기 떄문 
+
+스크립트요소 영역에서의 내장객체와 / EL 영역의 내장객체는 개념적으로 비슷한 부분이 많지만 사용하는
+영역은 엄격하게 구분이 되어 있다. 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	int sum = 0;
+	for(int i = 1; i <= 10; i++){
+		sum += i;
+		request.setAttribute("sum", new Integer(sum));
+	}
+%>
+<jsp:forward page="scope2.jsp"/> // forward 액션태그 사용  scope2.jsp에게로 요청된 모든 정보를 가지고 제어권이 넘어감  
+</body>
+</html>
+
+---------------------------------------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+request에 저장된 값을 표현식을 통해 출력 :<%=request.getAttribute("sum") %> <!-- request에 저장된 값을 표현식을 통해 출력 -->
+<br>
+<b>EL의 문법으로 sum값을 출력 ${requestScope.sum}</b> 
+</body>
+</html>
+
+
+http://localhost:8070/JSP1/ch1/el1.jsp //실행된 URL   http://로컬 /패키지/폴더명/파일이름.확장자  이렇게 구성되어 있음 제꺼는 
+------------출력된 결과 ----------------
+
+request에 저장된 값을 표현식을 통해 출력 :55 
+EL의 문법으로 sum값을 출력 55
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 
 EL의 내장객체
 param
@@ -33,3 +92,5 @@ headerValues
 cookie           :쿠키객체 참조할 때
 initParam        :컨텍스트의 초기화 파라미터를 의미함 
 pageContext 
+
+
