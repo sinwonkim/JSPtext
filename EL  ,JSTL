@@ -1,4 +1,10 @@
-JSP의 표현언어 Expression Language
+JSP의 표현언어 Expression Language - JSP2.0 버젼부터 지원이 되는 기술 
+데이터를 JSP 페이지 내에 표현하는 기술 
+
+표현언어? 왜 써 
+JSP페이지 내의 자바코드를 최소화하려는 정책
+
+
 
 JSP 페이지 내의 자바코드를 최소화 하려고  
 
