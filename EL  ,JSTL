@@ -65,7 +65,7 @@ JSPSTUDY.co.kr
 <body>
 request에 저장된 값을 표현식을 통해 출력 :<%=request.getAttribute("sum") %> <!-- request에 저장된 값을 표현식을 통해 출력 -->
 <br>
-<b>EL의 문법으로 sum값을 출력 ${requestScope.sum}</b> 
+<b>EL의 문법으로 sum값을 출력 ${requestScope.sum}</b> // EL의 문법으로 key값으로 속성값을 출력 함 
 </body>
 </html>
 
@@ -76,11 +76,48 @@ http://localhost:8070/JSP1/ch1/el1.jsp //실행된 URL   http://로컬 /패키�
 request에 저장된 값을 표현식을 통해 출력 :55 
 EL의 문법으로 sum값을 출력 55
 
-------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------param1.html ------------------------------------------------------------------------------------
+
+param  내장객체 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>EL의 param1</h2>
+<form action="param1.jsp"  method="get">
+id : <input type="text" name="id">
+email : <input type="email"  name="email">
+<input type="submit" value="전송">
+
+</form>
+
+</body>
+</html>
+
+------------param1.jsp --------------------------------------------------------------------------------------------
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+${param.id}
+${param.email}
+
+</body>
+</html>
 
 
-
-
+-------------------------------------------------------------------------------------------------------------------------
 
 
 
