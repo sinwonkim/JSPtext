@@ -1,0 +1,48 @@
+JSTL( JSP Standard Tag Library)
+
+JSTL의 이해 
+표준 태그 라이브러리(JSP Standard Tag Library)는 JSP페이지에서 일반적인 핵심 기능을 캡슐화하여 제공되는 JSP 태그의 컬렉션 
+JSTL은
+-일반적인 반복 및 조건 
+-포매팅 작업
+-XML 문서
+-국제화 태그 및 SQL 태그 조작을 위한 태그에 대한 지원을 하고 있음
+-JSTL 태그를 사용하여 기존 사용자 정의 태그를 통합하기 위한 프레임 워크를 제공함 
+
+
+JSTL의 태그 종류 
+Core -가장 자주 사용되는 JSTL태그이고 일반적인 프로그래밍에서 사용되는 기능을 제공함 
+Foramtting- 국제화된 웹 사이트에 대한 날짜, 시간 및 숫자 텍스트를 포맷하고 표시하는데 사용되는 기능을 제공함
+SQL - 오라클,MySQL 또는 Microsoft SQL Server와 같은 관계형 데이터베이스와 상호 작용하는 태그를 제공함 
+XML - XML문서를 생성하고 조작하는 방법을 제공함
+Functions - 일반적인 문자열을 가공하고 조작하기 위한 표준함수를 제공함 
+
+
+JSTL의 Core 태그 
+COre 태그 라이브러리는 프로그래밍에서 기본적으로 필요한 변수언언, 제어문,일반적인 로직등의 기능들이 제공되고 Core 태그의 종류는 아래 
+표와 같다.
+Core태그를 사용하기 위해서는 taglib 지시자(directive)를 선언해야 한다.
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+Core 태그의 종류 
+<c:out>   <%=...%> 표현식과 동일하게 JSP 페이지에 출력을 하는 태그 
+<c:set>    4개 영역의 JSP 저장소에 변수를 선언하는 태그 
+<c:remove>
+<c:if>
+
+<c:choose> 다중조건 선언을 위해서 사용이 되고 <c:choose>태그 안에 여러 조건을 위해서 <c:when>태그가 여러번 사용이 가능하고 <c:when>조건에 포함
+<c:when>    되지 않은 나머지 조건은 <c:otherwise>태그를 사용하여 선언을 한다.
+<c:otherwise>
+
+<c:forEach>  배열이나 Collection 객체(Vector,ArrayList,LinkedList,)의 요소를 사용하기 위해 제공되는 태그 
+
+컬렉션 프레임워크(collection framework)란?
+자바에서 컬렉션 프레임워크(collection framework)란 다수의 데이터를 쉽고 효과적으로 처리할 수 있는 표준화된 방법을 제공하는 클래스의 집합을 의미
+즉, 데이터를 저장하는 자료 구조와 데이터를 처리하는 알고리즘을 구조화하여 클래스로 구현해 놓은 것
+이러한 컬렉션 프레임워크는 자바의 인터페이스(interface)를 사용하여 구현됨
+
+<c:import> include 지시자와 같이 다른 페이지의 내용을 포함하기 위한 태그 <page 지시자의 import와는 전혀다른 기능
+<c:param> <c:import>와 <c:uri>에서 매개변수를 선언하는 태그 
+<c:redirect> query를 포함한 지정한 url로 웹페이지가 전환되는 태그 
+<c:catch> try...catch와 같이 예외처리를 위한 태그 
+
